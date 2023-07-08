@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TDMPW_412_3P_PR02.MainPage"
+             xmlns:local="clr-namespace:TDMPW_412_3P_PR02">
+    <ScrollView>
+         <Grid
+
+            RowDefinitions=".2*,.15*, .15*, .4*,.1*">
+
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Offset="0.50" Color="#f7f7e4"/>
+                    <GradientStop Offset="1" Color="#f2d98d"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <HorizontalStackLayout Margin="0,-50,0,0" Grid.Row="0">
+                <Label
+                Text="Lista de Tareas"
+                TextColor="#585f75"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="42"
+                FontFamily="TangoSans"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Margin="35,0,0,0"/>
+
+            <Image
+                Source="adolescente.png"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="50"
+                HorizontalOptions="Center"
+                Margin="-220,0,0,0"/>
+            </HorizontalStackLayout>
+
+                <HorizontalStackLayout HorizontalOptions="Center" HeightRequest="44" Margin="0,-200,0,0" Grid.Row="1">
+                <Entry
+                    x:Name="txtTarea"
+                    WidthRequest="200"
+                    IsEnabled="True"
+                    Placeholder="Ingresa la tarea"
+                    BackgroundColor="#fdfdf9"
+                    />
+                
+                <Button
+                    x:Name="btnAgregarTarea"
+                    Text="Agregar Tarea"
+                    Margin="10,0"
+                    BorderColor="#E0C354"
+                    TextColor="White"
+                    IsEnabled="True"
+                    Clicked="btnAgregarTarea_Clicked"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="44" Margin="55,-330,0,0" Grid.Row="2">
+                <Label
+                    Text="Prioridad:"
+                    VerticalOptions="Center"
+                    FontSize="18"/>
+                <Picker
+                        x:Name="picker"
+                        Margin="5"
+                        WidthRequest="230"
+                        BackgroundColor="#fdfdf9"
+                        HorizontalTextAlignment="Center">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Normal</x:String>
+                            <x:String>Importante</x:String>
+                            <x:String>Urgente</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                    <Picker.SelectedItem>
+                        <x:String>Normal</x:String>
+                    </Picker.SelectedItem>
+                </Picker>
+            </HorizontalStackLayout>
+            <BoxView HeightRequest="5"
+                     Margin="0,290,0,0"
+                     Color="#f2d98d"/>
+
+
+            <FlexLayout Grid.Row="3" Margin="0,-140,0,0" BackgroundColor="Transparent">
+                <ListView x:Name="listaTareas" ItemsSource="{Binding Tareas}" BackgroundColor="Transparent">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                    <StackLayout BackgroundColor="#fdfdf9">
+                                        <Grid Margin="0" ColumnDefinitions=".2*,.6*,.2*">
+                                            <Label
+                                                Text="{Binding Id}"
+                                                Grid.Column="0"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="Center"
+                                                FontSize="15"
+                                                />
+                                                <Label
+                                                Text="{Binding Nombre}"
+                                                Grid.Column="1"
+                                                VerticalOptions="Center"
+                                                FontSize="18"/>
+                                    
+                                            <CheckBox
+                                            IsChecked="{Binding Selected}"
+                                            Grid.Column="2"
+                                            CheckedChanged="CheckBox_CheckedChanged"/>
+
+                                        </Grid>
+                                    </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                
+
+            </FlexLayout>
+            
+            <Button
+                    x:Name="btnActualizarLista"
+                    Text="Actualizar"
+                    Margin="0,400,0,0"
+                    Grid.Row="3"
+                    WidthRequest="120"
+                    HeightRequest="40"
+                    CornerRadius="20"
+                    IsEnabled="False"
+                    FontSize="20"
+                    BackgroundColor="White"
+                    TextColor="#dac37f"
+                    BorderColor="Transparent"
+                    BorderWidth="2"
+                    Clicked="btnActualizarLista_Clicked"/>
+
+         </Grid>
+    </ScrollView>
+</ContentPage>
+
